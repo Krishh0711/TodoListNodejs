@@ -1,1 +1,1 @@
-window.onload = alert('I can access js');
+// window.onload = alert('I can access js');

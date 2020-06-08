@@ -19,7 +19,8 @@ const listSchema = new mongoose.Schema({
        required:true
    },
    status:{
-       type:Boolean
+       type:Boolean,
+       default:false
    }
 
 },{ timestamps: true });

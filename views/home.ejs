@@ -6,9 +6,33 @@
       <link rel="stylesheet" href="/css/home.css">
     </head>
     <body>
-        <h1>this is view</h1>
-    </body>
-    <script src="/js/home.js"> 
+       <form action="/users/add-task" method="POST">
+           <fieldset>
+               <h3>My Todo List</h3>
+           </fieldset>
+           <fieldset>
+               <label for="topic">Add Task</label>
+               <input type="text" name="taskTopic" placeholder="Add task topic..." id="topic">
+               <label for="description">Description</label>
+               <input type="text" name="description" placeholder="Add description..." id="description">
+               <label for="category">Category</label>
+               <select name="category" id="category">
+                <option value="personal">Personal</option>
+                <option value="school">School</option>
+                <option value="work">Work</option>
+                <option value="houseshold">HouseHold</option>
+              </select>
+               <label for="date">Due Date</label>
+               <input type="date" name="date" id="date">
+           </fieldset>
+           <fieldset>
+               <button type="Submit">Add Task</button>
+           </fieldset>
+       </form>
 
-    </script>
+        <script src="/js/home.js"> 
+
+        </script>
+    </body>
+   
 </html>
