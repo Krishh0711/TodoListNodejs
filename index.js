@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 8000;
+const db = require('./config/mongoose');
+const TodoList =  require('./models/list');
 
 
 app.use(express.static('./assets'));
@@ -10,6 +12,7 @@ app.use('/',require('./routes'));
 
 //set up view engine
 app.set('view engine', 'ejs');
+app.use(express.urlencoded());
 app.set('views','./views');
 
 
