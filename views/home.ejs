@@ -28,6 +28,18 @@
            <fieldset>
                <button type="Submit">Add Task</button>
            </fieldset>
+           <fieldset>
+               <ul>
+                <% for (let i of todolist){%>
+                <li>
+                    <div style="color: blueviolet;">
+                        <%=  i.description %>
+                    </div>
+                  
+                </li>
+                <% } %>
+               </ul>
+           </fieldset>
        </form>
 
         <script src="/js/home.js"> 
