@@ -15,12 +15,12 @@
                <div class="inputContainer">
                 <div>
                     <label for="topic">Add Task</label>
-                    <input type="text" name="taskTopic" placeholder="Add task topic..." id="topic">
+                    <input type="text" name="taskTopic" placeholder="Add task topic..." id="topic" required>
                    </div>
     
                    <div>
                     <label for="category">Category</label>
-                    <select name="category" id="category">
+                    <select name="category" id="category" required>
                         <option value="" disabled selected>Choose a category</option>   
                      <option value="personal">Personal</option>
                      <option value="school">School</option>
@@ -42,7 +42,7 @@
                    <div>
                     
                    <label for="date">Due Date</label>
-                    <input type="date" name="date" id="date">
+                    <input type="date" name="date" id="date" required>
                    </div>  
                </div>
            
@@ -54,22 +54,31 @@
                <button type="Submit">Add Task</button>
            </fieldset>
            <fieldset>
+               <% var completedTask =0;
+               var remainingTask =0 %>
                <table>
-                <% for (let i of todolist){ %>              
+
+                <% for (let i of todolist){%>   
+
                     <tr>
-                        <td>
+                        <td colspan="3" >
 
                           <div class="task-container">
                             <% if(i.status){ %>
                                 <h3 class="headingDesign markComplete"><%= i.task %></h3>
+                                <% completedTask++ %>
                             <% } else{ %>
                                 <h3 class="headingDesign"><%= i.task %></h3>
+                                <% remainingTask++ %>
                             <% } %>  
                             
                             <p class="dateDesign">Added on: <span>  <%= i.createdAt.toDateString() %> </span></p>
                             <p class="dateDesign">Due date: <span> <%= i.dateOfCompletion.toDateString()%> </span></p>
                           </div>  
                           
+                        </td>
+                        <td >
+                            <button><%= i.category %></button>
                         </td>
                         <td>
                             <div>
@@ -95,6 +104,13 @@
             
                 <% } %>
                </table>
+           </fieldset>
+           <fieldset>
+                <div id="info-container">
+                    <div><h4>Total Task: <%= todolist.length %></h4></div> 
+                    <div><h4> Completed: <%= completedTask %>  </h4></div>
+                    <div><h4>Remaining: <%= remainingTask %>  </h4>  </div>
+                </div>
            </fieldset>
        </form>
 

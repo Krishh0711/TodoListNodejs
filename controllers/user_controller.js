@@ -11,7 +11,7 @@ module.exports.addTask =  function(request,response){
     },function(err,newTask){
      if(err){
          console.log('error in inserting task');
-         return;
+         return response.redirect('back');
      }
      console.log('Added new task------>',newTask);
      return response.redirect('back');

@@ -42,6 +42,7 @@ table{
 
 .task-container{
     padding: 5px;
+    width: 100%;
 }
 
 .headingDesign{
@@ -56,9 +57,9 @@ table{
 
 .dateDesign{
   /* display: inline-block; */
-  line-height: 2px;
-  font-size: 13px;
-  letter-spacing: .03rem;
+  line-height: 5px;
+  font-size: 15px;
+  letter-spacing: .5px;
   color: gray;
 }
 
@@ -96,4 +97,11 @@ table{
   /* Show the tooltip text when you mouse over the tooltip container */
   .tooltip:hover .tooltiptext {
     visibility: visible;
+  }
+
+  #info-container{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
   }
