@@ -4,41 +4,97 @@
           <%= title %>
       </title>
       <link rel="stylesheet" href="/css/home.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     </head>
     <body>
        <form action="/users/add-task" method="POST">
            <fieldset>
                <h3>My Todo List</h3>
            </fieldset>
+           <fieldset >
+               <div class="inputContainer">
+                <div>
+                    <label for="topic">Add Task</label>
+                    <input type="text" name="taskTopic" placeholder="Add task topic..." id="topic">
+                   </div>
+    
+                   <div>
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                        <option value="" disabled selected>Choose a category</option>   
+                     <option value="personal">Personal</option>
+                     <option value="school">School</option>
+                     <option value="work">Work</option>
+                     <option value="houseshold">HouseHold</option>
+                     </select>
+                   </div>  
+               </div>
+               
+           </fieldset> 
            <fieldset>
-               <label for="topic">Add Task</label>
-               <input type="text" name="taskTopic" placeholder="Add task topic..." id="topic">
-               <label for="description">Description</label>
-               <input type="text" name="description" placeholder="Add description..." id="description">
-               <label for="category">Category</label>
-               <select name="category" id="category">
-                <option value="personal">Personal</option>
-                <option value="school">School</option>
-                <option value="work">Work</option>
-                <option value="houseshold">HouseHold</option>
-              </select>
-               <label for="date">Due Date</label>
-               <input type="date" name="date" id="date">
+
+            <div class="inputContainer">
+                <div>
+                    <label for="description">Description</label>
+                    <textarea type="text" name="description" cols="25" rows="3" placeholder="Add description..." id="description"></textarea>
+                   </div>
+    
+                   <div>
+                    
+                   <label for="date">Due Date</label>
+                    <input type="date" name="date" id="date">
+                   </div>  
+               </div>
+           
+
+
+              
            </fieldset>
            <fieldset>
                <button type="Submit">Add Task</button>
            </fieldset>
            <fieldset>
-               <ul>
-                <% for (let i of todolist){%>
-                <li>
-                    <div style="color: blueviolet;">
-                        <%=  i.description %>
-                    </div>
-                  
-                </li>
+               <table>
+                <% for (let i of todolist){ %>              
+                    <tr>
+                        <td>
+
+                          <div class="task-container">
+                            <% if(i.status){ %>
+                                <h3 class="headingDesign markComplete"><%= i.task %></h3>
+                            <% } else{ %>
+                                <h3 class="headingDesign"><%= i.task %></h3>
+                            <% } %>  
+                            
+                            <p class="dateDesign">Added on: <span>  <%= i.createdAt.toDateString() %> </span></p>
+                            <p class="dateDesign">Due date: <span> <%= i.dateOfCompletion.toDateString()%> </span></p>
+                          </div>  
+                          
+                        </td>
+                        <td>
+                            <div>
+                                <i class="fas fa-info-circle tooltip" >
+                                    <span class="tooltiptext"> <%= i.description %> </span> 
+                                </i>         
+                            </div>
+                           
+                        </td>
+
+                        <td>
+                            <% if(i.status){ %>
+                                <a href="/users/mark-incomplete/?id=<%= i._id %>" title="Mark Incomplete"><i class="far fa-times-circle"></i></a>
+                            <% } else{ %>
+                                <a href="/users/mark-complete/?id=<%= i._id %>" title="Mark Complete" ><i class="fas fa-check-circle"></i></a>
+                            <% } %>                   
+                          
+                        </td>
+                        <td>
+                        <a href="/users/delete-task/?id=<%= i._id %>" title="Detete task"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+            
                 <% } %>
-               </ul>
+               </table>
            </fieldset>
        </form>
 

@@ -1,5 +1,99 @@
 body{
-    color: aqua;
-    width: 100%;
-    height: 100vh;
+   margin: 0;
+   padding: 0;
 }
+
+form{
+    width: 40%;
+    margin: auto;
+}
+
+label{
+    display: block;
+}
+
+.inputContainer{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+fieldset div{
+    width: 50%;
+}
+
+input{
+    border: none;
+    height: 2rem;
+    width: 100%;
+}
+
+input:focus{
+    outline: none;
+    border-bottom: 1px solid gray;
+}
+
+table{
+    width: 100%;
+}
+
+.task-container{
+    padding: 5px;
+}
+
+.headingDesign{
+    line-height: 2px;
+    margin-top: 5px;
+}
+
+.markComplete{
+    text-decoration: line-through;
+    color: gray;
+}
+
+.dateDesign{
+  /* display: inline-block; */
+  line-height: 2px;
+  font-size: 13px;
+  letter-spacing: .03rem;
+  color: gray;
+}
+
+.dateDesign span{
+    color: gray;
+}
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 12px;
+    width: 10rem;
+    top: 100%;
+    left: 50%;
+    margin-left: -6rem; /* Use half of the width (120/2 = 60), to center the tooltip */
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
