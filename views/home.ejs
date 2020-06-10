@@ -7,6 +7,8 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     </head>
     <body>
+
+       <!-- Form start -->
        <form action="/users/add-task" method="POST">
            <fieldset class="headerTodo">
                <p>My Todo List</p>
@@ -53,7 +55,7 @@
            <fieldset>
                <button type="Submit">Add Task</button>
            </fieldset>
-        
+          <!-- Display all task -->
            <fieldset class="displayTask">
                <% var completedTask =0;
                var remainingTask =0 
@@ -63,8 +65,9 @@
                 <% for (let i of todolist){%>   
 
                     <tr>
+                        <!-- Taks heading and date -->
                         <td colspan="3" >
-
+                     
                           <div class="task-container">
                             <% if(i.status){ %>
                                 <h3 class="headingDesign markComplete"><%= i.task %></h3>
@@ -76,14 +79,16 @@
                             
                             <p class="dateDesign">Added on: <span>  <%= i.createdAt.toDateString() %> </span></p>
                             <p class="dateDesign">Due date: <span> <%= i.dateOfCompletion.toDateString()%> </span></p>
-                            <% if(i.dateOfCompletion.toDateString() === todaysDate.toDateString()){ %>
+                            <% if(i.dateOfCompletion.toDateString() === todaysDate.toDateString() && !i.status){ %>
                                 <p class="warning"> Hurry up!!! Deadline approaching!</p>     
-                            <% } else if(i.dateOfCompletion < todaysDate){ %>
+                            <% } else if(i.dateOfCompletion < todaysDate && !i.status){ %>
                                 <p class="warning"> Deadline crossed!!! </p>
                             <% } %>  
                           </div>  
                           
                         </td>
+
+                        <!-- Show category -->
                         <td >
                             <% if(i.category==="Personal"){ %>
                                 <div class="category colorDivRed">
@@ -111,6 +116,7 @@
                                 </div>
                            <% } %>    
                         </td>
+                        <!-- Show description -->
                         <td>
                             <div>
                                 <i class="fas fa-info-circle tooltip" >
@@ -119,7 +125,7 @@
                             </div>
                            
                         </td>
-
+                        <!-- Show status of completion -->
                         <td>
                             <% if(i.status){ %>
                                 <a href="/users/mark-incomplete/?id=<%= i._id %>" title="Mark Incomplete"><i class="far fa-times-circle"></i></a>
@@ -136,6 +142,7 @@
                 <% } %>
                </table>
            </fieldset>
+           <!-- Footer showing cumulation information -->
            <fieldset class="footerStyle">
                 <div id="info-container">
                     <div><p>Total Task: <%= todolist.length %></p></div> 
@@ -144,9 +151,6 @@
                 </div>
            </fieldset>
         </form>
-        <script src="/js/home.js"> 
-
-        </script>
     </body>
    
 </html>

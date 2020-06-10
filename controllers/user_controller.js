@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const TodoList = require('../models/list');
 
+
+//add new task function
 module.exports.addTask =  function(request,response){
     TodoList.create({
         task:request.body.taskTopic,
@@ -18,7 +20,7 @@ module.exports.addTask =  function(request,response){
     });     
 }
 
-
+//delete task function
 module.exports.deleteTask =  function(request,response){
     let id = request.query.id;
     
@@ -32,6 +34,7 @@ module.exports.deleteTask =  function(request,response){
     });     
 }
 
+//mark task as complete and update value to true
 module.exports.markComplete = function(request,response){
     let id = request.query.id;
     TodoList.findById(id,function(err,getTask){
@@ -46,6 +49,7 @@ module.exports.markComplete = function(request,response){
 
 }
 
+//mark task incomplete and update value to false
 module.exports.markInComplete = function(request,response){
     let id = request.query.id;
     TodoList.findById(id,function(err,getTask){

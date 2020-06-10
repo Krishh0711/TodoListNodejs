@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+//Schema of db
 const listSchema = new mongoose.Schema({
    task : {
        type: String,

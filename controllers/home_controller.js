@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const TodoList = require('../models/list');
 
+
+//Loading home controller by fetching details from db
 module.exports.home = function(request, response){
     TodoList.find({},function(err,todolist){
         if(err){
