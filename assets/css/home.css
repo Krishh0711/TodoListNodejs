@@ -17,7 +17,7 @@ form{
     background-color: lightcyan;
     box-sizing: border-box;
     border-radius: 20px;
-    box-shadow: 0 0 10px 3px cyan;
+    box-shadow: 0 0 20px 3px black;
 }
 
 button{
@@ -60,7 +60,7 @@ fieldset div{
 input{
     border: none;
     height: 2rem;
-    width: 100%;
+    width: 80%;
 }
 
 input:focus{
