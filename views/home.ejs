@@ -8,8 +8,8 @@
     </head>
     <body>
        <form action="/users/add-task" method="POST">
-           <fieldset>
-               <h3>My Todo List</h3>
+           <fieldset class="headerTodo">
+               <p>My Todo List</p>
            </fieldset>
            <fieldset >
                <div class="inputContainer">
@@ -22,10 +22,10 @@
                     <label for="category">Category</label>
                     <select name="category" id="category" required>
                         <option value="" disabled selected>Choose a category</option>   
-                     <option value="personal">Personal</option>
-                     <option value="school">School</option>
-                     <option value="work">Work</option>
-                     <option value="houseshold">HouseHold</option>
+                     <option value="Personal">Personal</option>
+                     <option value="School">School</option>
+                     <option value="Work">Work</option>
+                     <option value="HouseHold">HouseHold</option>
                      </select>
                    </div>  
                </div>
@@ -44,7 +44,7 @@
                    <label for="date">Due Date</label>
                     <input type="date" name="date" id="date" required>
                    </div>  
-               </div>
+            </div>
            
 
 
@@ -53,9 +53,11 @@
            <fieldset>
                <button type="Submit">Add Task</button>
            </fieldset>
-           <fieldset>
+        
+           <fieldset class="displayTask">
                <% var completedTask =0;
-               var remainingTask =0 %>
+               var remainingTask =0 
+               const todaysDate = new Date()%>
                <table>
 
                 <% for (let i of todolist){%>   
@@ -74,11 +76,40 @@
                             
                             <p class="dateDesign">Added on: <span>  <%= i.createdAt.toDateString() %> </span></p>
                             <p class="dateDesign">Due date: <span> <%= i.dateOfCompletion.toDateString()%> </span></p>
+                            <% if(i.dateOfCompletion.toDateString() === todaysDate.toDateString()){ %>
+                                <p class="warning"> Hurry up!!! Deadline approaching!</p>     
+                            <% } else if(i.dateOfCompletion < todaysDate){ %>
+                                <p class="warning"> Deadline crossed!!! </p>
+                            <% } %>  
                           </div>  
                           
                         </td>
                         <td >
-                            <button><%= i.category %></button>
+                            <% if(i.category==="Personal"){ %>
+                                <div class="category colorDivRed">
+                                    <p>
+                                        <%= i.category %>
+                                    </p>
+                                </div>
+                            <% } else if(i.category==="Work"){ %>
+                                <div class="category colorDivGreen">
+                                    <p>
+                                        <%= i.category %>
+                                    </p>
+                                </div>
+                             <% } else if(i.category==="HouseHold"){ %>
+                                    <div class="category colorDivViolet">
+                                        <p>
+                                            <%= i.category %>
+                                        </p>
+                                    </div>
+                            <% } else if(i.category==="School"){ %>
+                                <div class="category colorDivBlue">
+                                 <p>
+                                      <%= i.category %>
+                                </p>
+                                </div>
+                           <% } %>    
                         </td>
                         <td>
                             <div>
@@ -101,19 +132,18 @@
                         <a href="/users/delete-task/?id=<%= i._id %>" title="Detete task"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
-            
+                
                 <% } %>
                </table>
            </fieldset>
-           <fieldset>
+           <fieldset class="footerStyle">
                 <div id="info-container">
-                    <div><h4>Total Task: <%= todolist.length %></h4></div> 
-                    <div><h4> Completed: <%= completedTask %>  </h4></div>
-                    <div><h4>Remaining: <%= remainingTask %>  </h4>  </div>
+                    <div><p>Total Task: <%= todolist.length %></p></div> 
+                    <div><p> Completed: <%= completedTask %>  </p></div>
+                    <div><p>Remaining: <%= remainingTask %>  </p>  </div>
                 </div>
            </fieldset>
-       </form>
-
+        </form>
         <script src="/js/home.js"> 
 
         </script>
